@@ -11,7 +11,6 @@ import TransactionsEdit from "./TransactionsEdit";
 import TransactionsLogin from "./TransactionsLogin";
 import TransactionsSignup from "./TransactionsSignup";
 import TransactionsDelete from "./TransactionsDelete";
-import TransactionsPnL from "./TransactionsPnL";
 import "./App.css";
 
 
@@ -88,24 +87,6 @@ function AnimatedRoutes({
             >
               <TransactionsLogin />
             </motion.div>
-          } 
-        />
-        <Route 
-          path="/profit" 
-          element={
-            <motion.div
-              {...page_motion}
-            >
-              <TransactionsPnL
-                PnLs={PnLs}
-              />
-            </motion.div>
-          } 
-        />
-        <Route 
-          path="/profit" 
-          element={
-            <Logo />
           } 
         />
       </Routes>
