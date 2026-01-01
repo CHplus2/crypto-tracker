@@ -1,18 +1,15 @@
 # CoinSave – Crypto Portfolio Tracker
 
-A full-stack crypto portfolio tracker that supports multi-wallet tracking,
-PnL calculation, gas fees, staking rewards, and airdrops.
+A full-stack crypto portfolio tracker that helps users record transactions
+and track realized and unrealized profit & loss.
 
 ## Tech Stack
 - Frontend: React, CSS (custom design)
 - Backend: Django REST Framework
-- Database: PostgreSQL / SQLite
+- Database: SQLite
 - Auth: Session-based authentication
 
 ## Features
-- Buy / Sell / Transfer tracking
-- Multi-wallet support
-- Realized & Unrealized PnL
-- Gas fee accounting
-- Staking rewards & airdrops
-- Clean, professional UI inspired by crypto exchanges
+- Display sorted transactions grouped by date
+- Add, edit, and delete transactions
+- Realized & unrealized PnL calculation
