@@ -39,5 +39,7 @@ This project focuses on accurate financial calculations, clean data presentation
 
 ## Project Structure
 
-* `react-tracker/` → React source code
-* `myapp/` → Django REST API source code
+```
+`react-tracker/` → React source code
+`myapp/` → Django REST API source code
+```
