@@ -40,6 +40,6 @@ This project focuses on accurate financial calculations, clean data presentation
 ## Project Structure
 
 ```
-react-tracker/        # React frontend
-myapp/         # Django REST API
+* `react-grocery/` → React source code
+* `myapp/` → Django REST API source code
 ```
