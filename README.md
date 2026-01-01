@@ -39,7 +39,5 @@ This project focuses on accurate financial calculations, clean data presentation
 
 ## Project Structure
 
-```
 * `react-grocery/` → React source code
 * `myapp/` → Django REST API source code
-```
