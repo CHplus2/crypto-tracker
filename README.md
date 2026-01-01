@@ -45,5 +45,3 @@ This project focuses on accurate financial calculations, clean data presentation
 react-tracker/        # React frontend
 myapp/         # Django REST API
 ```
-
-Just tell me.
