@@ -2,8 +2,6 @@
 
 A full-stack crypto portfolio tracker built with React and Django REST Framework that helps users track transactions and calculate realized and unrealized PnL.
 
-This project focuses on accurate financial calculations, clean data presentation, and frontend–backend integration.
-
 
 
 ## Features
