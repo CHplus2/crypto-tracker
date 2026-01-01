@@ -1,4 +1,4 @@
-# CoinSave 
+# coinsave 
 
 A full-stack crypto portfolio tracker built with **React** and **Django REST Framework** that helps users track transactions and calculate realized and unrealized PnL.
 
