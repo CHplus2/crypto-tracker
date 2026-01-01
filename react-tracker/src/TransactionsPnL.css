@@ -1,0 +1,100 @@
+.pnl-page {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 1.5rem 1rem;
+  color: var(--text-primary);
+  font-family: 'Inter', 'Arial', sans-serif;
+}
+
+.pnl-header {
+  margin-bottom: 2rem;
+}
+
+.pnl-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent-hover)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 6px;
+}
+
+.pnl-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.pnl-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.pnl-card-lg {
+  background: #1a1625;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pnl-card-lg:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.18);
+}
+
+.pnl-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.pnl-main {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.pnl-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.pnl-value.profit {
+  color: var(--profit);
+}
+
+.pnl-value.loss {
+  color: var(--loss);
+}
+
+.pnl-percent {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-left: 4px;
+  position: relative;
+  top: -1px;
+}
+
+.pnl-percent.profit {
+  color: var(--profit);
+}
+
+.pnl-percent.loss {
+  color: var(--loss);
+}
+
+.pnl-hint {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}

@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "./DramasDelete.css";
+import "./TransactionsDelete.css";
 
-function DramasDelete({ animation, onClose, onConfirm, dramaTitle }) {
+function TransactionsDelete({ animation, onClose, onConfirm, dramaTitle }) {
 
     return (
         <div className="modal-overlay" onClick={onClose}>
@@ -12,7 +12,7 @@ function DramasDelete({ animation, onClose, onConfirm, dramaTitle }) {
                 transition= {{ ...animation.transition, duration: 0.2 }}
                 onClick={(e) => e.stopPropagation()}
             >
-                <h3>Delete Drama?</h3>
+                <h3>Delete Transaction?</h3>
                 <p>Are you sure you want to delete{" "}
                     <strong>{dramaTitle}</strong>? <br />
                     This action can't be undone.
@@ -31,4 +31,4 @@ function DramasDelete({ animation, onClose, onConfirm, dramaTitle }) {
     );
 }
 
-export default DramasDelete;
+export default TransactionsDelete;

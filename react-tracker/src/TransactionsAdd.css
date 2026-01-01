@@ -1,6 +1,19 @@
 :root {
-  --accent: #1e90ff;      
-  --accent-hover: #3aa0ff;
+  /* Primary Accent Colors (gradient endpoints) */
+  --accent: #8a2bee;        /* Rich neon purple */
+  --accent-hover: #d76bff;  /* Pinkish violet for hover and highlights */
+
+  /* Background & Surfaces */
+  --bg-primary: #0a0412;    /* Dark base to enhance neon glow */
+  --bg-card: #170b25;       /* Slightly lighter card surface */
+
+  /* Text Colors */
+  --text-primary: #ffffff;  /* Clean white text */
+  --text-secondary: #cda8e9; /* Soft lavender for secondary info */
+
+  /* Glow Effects matching gradient tones */
+  --accent-glow: 0 0 14px rgba(138, 43, 238, 0.75),
+                 0 0 20px rgba(215, 107, 255, 0.45);
 }
 
 

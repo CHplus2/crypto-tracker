@@ -1,0 +1,186 @@
+:root {
+  /* === BRAND COLORS === */
+  --accent: #a855f7;          /* Main purple accent */
+  --accent-hover: #c084fc;    /* Hover/lighter purple */
+  --accent-gradient: linear-gradient(90deg, #a855f7, #c084fc);
+  
+  /* === BACKGROUND COLORS === */
+  --bg-main: #0a0a0f;         /* App background */
+  --bg-card: #16111f;         /* Card / row background */
+  --bg-hover: #221933;        /* Row hover color */
+  --bg-header: #120d1b;       /* Header background */
+
+  /* === TEXT COLORS === */
+  --text-primary: #ffffff;
+  --text-secondary: #b8a4d9;
+
+  /* === FEEDBACK COLORS === */
+  --profit: #4ade80;
+  --loss: #ef4444;
+
+  /* === SHADOWS === */
+  --soft-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  --accent-glow: 0 0 14px rgba(168, 85, 247, 0.6);
+}
+
+/* === BASE === */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Poppins', sans-serif;
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+
+.App {
+  min-height: 100vh;
+}
+
+/* === HEADER === */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--bg-header);
+  box-shadow: var(--soft-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-header h1 {
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: opacity 0.2s ease;
+}
+
+.app-header h1:hover {
+  opacity: 0.9;
+}
+
+/* === NAV === */
+.main-nav {
+  display: flex;
+  align-items: center;
+}
+
+.main-nav a {
+  color: var(--text-secondary);
+  margin-left: 1.2rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: var(--accent);
+}
+
+/* === LOGIN & USER DROPDOWN === */
+.login-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.login-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.user-dropdown {
+  position: relative;
+}
+
+.user-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown-content {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  width: 140px;
+  background: rgba(20, 20, 30, 0.95);
+  border-radius: 8px;
+  box-shadow: var(--soft-shadow);
+  overflow: hidden;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.logout-btn {
+  width: 100%;
+  color: white;
+  padding: 0.7rem 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* === PAGE ELEMENTS === */
+.back-link {
+  display: block;
+  width: fit-content;
+  margin: 1.2rem auto 0;
+  padding: 0.65rem 1.2rem;
+  background: var(--bg-card);
+  border-radius: 8px;
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.back-link:hover {
+  background: var(--bg-hover);
+  transform: translateY(-1px);
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === MOBILE === */
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .main-nav {
+    flex-wrap: wrap;
+  }
+
+  .login-btn {
+    padding: 0.4rem 0.8rem;
+  }
+}

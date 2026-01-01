@@ -1,0 +1,256 @@
+:root {
+  --accent: #a855f7;         /* Main purple accent */
+  --accent-hover: #c084fc;   /* Lighter hover purple */
+  --bg-main: #0a0a0f;        /* Deep dark neutral */
+  --bg-card: #141218;        /* Row background */
+  --bg-row-hover: #1e1b26;   /* Hover state */
+  --border-color: rgba(255,255,255,0.08);
+  --text-primary: #f8f8ff;
+  --text-secondary: #b3b3c6;
+  --profit: #4ade80;         /* green for profit */
+  --loss: #ef4444;           /* red for loss */
+}
+
+
+/* Page Container */
+.transactions-page {
+  font-family: 'Inter', 'Arial', sans-serif;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.5rem 1rem;
+  text-align: left;
+  color: var(--text-primary);
+}
+
+/* Title */
+.page-title-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+
+/* Filters */
+#genre-select,
+#year-select,
+#sort-select {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+#genre-select:hover,
+#year-select:hover,
+#sort-select:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(0,184,255,0.4);
+}
+
+/* Transactions Table Style */
+.transaction-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.date-header {
+  margin: 0.5rem 0 0.5rem;
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.transaction-header,
+.transaction-row {
+  grid-template-columns:
+    1.2fr 1fr 1fr 1fr 1fr 1fr minmax(80px, auto);
+}
+
+/* Transaction Table Header */
+.transaction-header {
+  display: grid;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 10px 10px 0 0;
+  background: #121018; /* slightly darker than rows */
+  color: var(--text-secondary); /* dimmer than rows */
+  font-weight: 500; /* medium */
+  text-transform: capitalize; /* clean labeling */
+  font-size: 0.88rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--border-color);
+  
+}
+
+/* Columns spacing */
+.transaction-header > div {
+  padding-left: 6px;
+}
+
+.col-4,
+.col-5,
+.col-6 {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  padding-right: 12px;
+}
+
+/* Table Row */
+.transaction-row {
+  display: grid;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 0;
+  background: #1a1625; 
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.date-group:last-of-type .transaction-row:last-of-type {
+  border-radius: 0 0 10px 10px;
+}
+
+.transaction-row:hover {
+  background: var(--bg-row-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 184, 255, 0.15);
+}
+
+.transaction-row p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text-primary); 
+  font-weight: 400;
+}
+
+.transaction-row .col-1 p {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Action Buttons */
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-icon:hover {
+  background: var(--accent);
+  border-color: var(--accent-hover);
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(0,184,255,0.5);
+}
+
+/* Empty State */
+.empty-text {
+  text-align: center;
+  margin: 3rem 0;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* PnL Summary */
+
+.pnl-summary {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 1.5rem;
+}
+
+.pnl-card {
+  flex: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(168, 85, 247, 0.08),
+    rgba(20, 18, 24, 1)
+  );
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pnl-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(168, 85, 247, 0.18);
+}
+
+.pnl-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pnl-main {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.pnl-value {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Profit / Loss states */
+.pnl-value.profit {
+  color: var(--profit);
+  text-shadow: none;
+}
+
+.pnl-value.loss {
+  color: var(--loss);
+  text-shadow: none;
+}
+
+.pnl-percent {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-left: 4px;
+  position: relative;
+  top: -1px;
+}
+
+.pnl-percent.profit {
+  color: var(--profit);
+}
+
+.pnl-percent.loss {
+  color: var(--loss);
+}

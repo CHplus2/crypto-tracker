@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { getCookie } from "./utils";
 import { motion } from "framer-motion";
 import axios from "axios"
-import "./DramasLogin.css";
+import "./TransactionsLogin.css";
 
-function DramasLogin({ animation, onClose, onOpen, onSuccess }) {
-    const [formData, setFormData] = useState({ "username": "", "password": "" });
+function TransactionsSignup({ animation, onClose, onOpen, onSuccess }) {
+    const [formData, setFormData] = useState({ 
+        "username": "", 
+        "password": "",
+        "confirmPassword": "", 
+    });
     const [error, setError] = useState("");
 
     const handleChange = (e) => {
@@ -14,16 +18,22 @@ function DramasLogin({ animation, onClose, onOpen, onSuccess }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (formData.password !== formData.confirmPassword) {
+            setError("Passwords do not match");
+            return;
+        }
+
         try {
-            await axios.post("/api/login/", formData, { 
+            await axios.post("/api/signup/", formData, { 
                 withCredentials: true,
                 headers: { "X-CSRFToken": getCookie("csrftoken") }, 
             });
-            setFormData({ "username": "", "password": "" });
+            setFormData({ "username": "", "password": "", "confirmPassword": "" });
             onSuccess();
             onClose();
         } catch (err) {
-            setError("Invalid username or password");
+            setError("Signup failed — username may already exist");
         }
     }   
 
@@ -36,7 +46,7 @@ function DramasLogin({ animation, onClose, onOpen, onSuccess }) {
                 onClick={(e) => e.stopPropagation()}
             >
                 <button className="close-btn" onClick={onClose}>✖</button>
-                <h2>Login</h2>
+                <h2>Sign up</h2>
                 <form onSubmit={handleSubmit} className="login-form">
                 <input 
                         type="text" 
@@ -54,11 +64,22 @@ function DramasLogin({ animation, onClose, onOpen, onSuccess }) {
                         onChange={handleChange}
                         required
                     />
+                    <input
+                        type="password"
+                        name="confirmPassword"
+                        placeholder="Confirm Password"
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
+                        required
+                    />
+
                     {error && <p className="error">{error}</p>}
-                    <button type="submit">Login</button>
+                    
+                    <button type="submit">Create Account</button>
                 </form>
+
                 <p>
-                    Don't have an account?{" "}
+                    Already have an account?{" "}
                     <span
                         className="switch-link"
                         onClick={() => {
@@ -66,7 +87,7 @@ function DramasLogin({ animation, onClose, onOpen, onSuccess }) {
                             onOpen();
                         }}   
                     >
-                        Create one
+                        Log in
                     </span>
                 </p>
             </motion.div>
@@ -74,4 +95,4 @@ function DramasLogin({ animation, onClose, onOpen, onSuccess }) {
     )
 }
 
-export default DramasLogin;
+export default TransactionsSignup;

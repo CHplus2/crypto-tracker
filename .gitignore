@@ -1,24 +1,16 @@
 # Python
 __pycache__/
 *.pyc
-
-# Virtual environment
 venv/
 
-# Database
+# Django
 db.sqlite3
-
-# Logs
 *.log
 
-# Environment variables / secret keys
-*.env
+# Node / Frontend
+node_modules/
+dist/
+build/
 
-# VS Code settings
+# Editor
 .vscode/
-
-# Vue
-vue-contacts/
-
-#.env
-.env
