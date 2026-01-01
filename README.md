@@ -1,13 +1,49 @@
-# CoinSave – Crypto Portfolio Tracker
+# CoinSave 
 
-A full-stack crypto portfolio tracker that helps users record transactions
-and track realized and unrealized profit & loss.
+**Crypto Portfolio Tracker**
 
-## Tech Stack
-- Frontend: React, CSS
-- Backend: Django REST Framework
+A full-stack crypto portfolio tracker built with **React** and **Django REST Framework** that helps users track transactions and calculate realized and unrealized PnL.
+
+This project focuses on accurate financial calculations, clean data presentation, and frontend–backend integration.
+
+---
 
 ## Features
-- Display sorted transactions grouped by date
-- Add, edit, and delete transactions
-- Realized & unrealized PnL calculation
+
+* Display transactions grouped and sorted by date
+* Add, edit, and delete crypto transactions
+* Realized & unrealized PnL calculation
+* Clean, dark-themed UI inspired by professional crypto tools
+
+---
+
+## Tech Stack
+
+**Frontend**
+
+* React
+* Custom CSS (dark theme UI)
+
+**Backend**
+
+* Django
+* Django REST Framework
+
+**Database**
+
+* SQLite
+
+**Authentication**
+
+* Session-based authentication
+
+---
+
+## Project Structure
+
+```
+react-tracker/        # React frontend
+myapp/         # Django REST API
+```
+
+Just tell me.
