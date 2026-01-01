@@ -6,7 +6,7 @@ A full-stack crypto portfolio tracker built with **React** and **Django REST Fra
 
 This project focuses on accurate financial calculations, clean data presentation, and frontend–backend integration.
 
----
+
 
 ## Features
 
@@ -15,7 +15,7 @@ This project focuses on accurate financial calculations, clean data presentation
 * Realized & unrealized PnL calculation
 * Clean, dark-themed UI inspired by professional crypto tools
 
----
+
 
 ## Tech Stack
 
@@ -37,7 +37,7 @@ This project focuses on accurate financial calculations, clean data presentation
 
 * Session-based authentication
 
----
+
 
 ## Project Structure
 
