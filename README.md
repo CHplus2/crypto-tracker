@@ -1,8 +1,6 @@
 # coinsave 
 
-A full-stack crypto portfolio tracker built with **React** and **Django REST Framework** that helps users track transactions and calculate realized and unrealized PnL.
-
-This project focuses on accurate financial calculations, clean data presentation, and frontend–backend integration.
+A full-stack crypto portfolio tracker built with React and Django REST Framework that helps users track transactions and calculate realized and unrealized PnL.
 
 
 
@@ -40,6 +38,6 @@ This project focuses on accurate financial calculations, clean data presentation
 ## Project Structure
 
 ```
-react-tracker/        # React frontend
-myapp/         # Django REST API
+react-tracker/   # React frontend
+myapp/          # Django REST API backend
 ```
