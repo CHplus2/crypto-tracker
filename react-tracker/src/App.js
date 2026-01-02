@@ -14,9 +14,9 @@ import TransactionsDelete from "./TransactionsDelete";
 import "./App.css";
 
 
-function AnimatedRoutes({ 
-  transactions, setTransactions, isAuthenticated, 
-  setShowLogin, handleDelete, PnLs
+function AnimatedRoutes({
+  transactions, setTransactions, PnLs,
+  isAuthenticated, setShowLogin, handleDelete,
 }) {
 
   const navigate = useNavigate();
@@ -62,6 +62,8 @@ function AnimatedRoutes({
               {...page_motion}
             >
               <TransactionsAdd 
+                isAuthenticated={isAuthenticated}
+                setShowLogin={setShowLogin}
                 setTransactions={setTransactions}
               />
             </motion.div>
@@ -78,16 +80,6 @@ function AnimatedRoutes({
               />
             </motion.div>
           }
-        />
-        <Route 
-          path="/login" 
-          element={
-            <motion.div
-              {...page_motion}
-            >
-              <TransactionsLogin />
-            </motion.div>
-          } 
         />
       </Routes>
     </AnimatePresence>
@@ -121,11 +113,6 @@ function App() {
   }
 
   useEffect(() => {
-    axios
-      .get("/api/transactions/", { withCredentials: true })
-      .then(res => setTransactions(res.data))
-      .catch(err => console.error(err));
-
     const checkAuth = async () => {
       try {
         const res = await axios.get("/api/check-auth/", { withCredentials: true })
@@ -137,24 +124,30 @@ function App() {
       }
     };
 
-    const loadPnLs = async () => {
-      try {
-          const res = await fetch("/api/all_pnl/")
-          if (!res.ok) throw new Error("Failed to fetch app PnLs")
-
-          const PnLs = await res.json();
-          setRealizedPnL(Number(PnLs.realized));
-          setUnrealizedPnL(Number(PnLs.unrealized));
-          setRealizedCost(Number(PnLs.realized_cost));
-          setUnrealizedCost(Number(PnLs.unrealized_cost));
-      } catch (err) {
-          console.error(err);
-      }
-    };
-
     checkAuth();
-    loadPnLs();
   }, []);
+
+  const loadTransactions = () => {
+    axios
+      .get("/api/transactions/", { withCredentials: true })
+      .then(res => setTransactions(res.data))
+      .catch(err => console.error(err));
+  }
+
+  const loadPnLs = async () => {
+    try {
+        const res = await fetch("/api/all_pnl/")
+        if (!res.ok) throw new Error("Failed to fetch app PnLs")
+
+        const PnLs = await res.json();
+        setRealizedPnL(Number(PnLs.realized));
+        setUnrealizedPnL(Number(PnLs.unrealized));
+        setRealizedCost(Number(PnLs.realized_cost));
+        setUnrealizedCost(Number(PnLs.unrealized_cost));
+    } catch (err) {
+        console.error(err);
+    }
+  };
 
   const handleLogout = async () => {
     try {
@@ -163,6 +156,11 @@ function App() {
         headers: { "X-CSRFToken": getCookie("csrftoken") },
       });
       setIsAuthenticated(false);
+      setTransactions([])
+      setRealizedPnL(0.00);
+      setUnrealizedPnL(0.00);
+      setRealizedCost(0.00);
+      setUnrealizedCost(0.00);
     } catch (err) {
       console.error(err);
     }
@@ -240,12 +238,14 @@ function App() {
         </header>
         
         <AnimatedRoutes
+          loadTransactions={loadTransactions}
+          loadPnLs={loadPnLs}
           transactions={transactions}
           setTransactions={setTransactions}
+          PnLs={PnLs}
           isAuthenticated={isAuthenticated}
           setShowLogin={setShowLogin}
           handleDelete={handleDelete}
-          PnLs={PnLs}
         />
 
         <AnimatePresence>
@@ -255,7 +255,10 @@ function App() {
                 onClose={() => setShowLogin(false)}
                 onOpen={() => setShowSignup(true)}
                 onSuccess={() => {
-                  setIsAuthenticated(true);                   
+                  setIsAuthenticated(true); 
+                  setDropdownOpen(false)
+                  loadTransactions();
+                  loadPnLs();
                 }}
             />
           )}
@@ -267,8 +270,11 @@ function App() {
               animation={modalMotion}
               onClose={() => setShowSignup(false)}
               onOpen={() => setShowLogin(true)}
-              onSuccess={() => {
-                setIsAuthenticated(true);                   
+              onSuccess={() => {   
+                setIsAuthenticated(true); 
+                setDropdownOpen(false);
+                loadTransactions();
+                loadPnLs();              
               }}
             />
           )}

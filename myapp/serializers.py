@@ -11,7 +11,7 @@ class TransactionSerializer(serializers.ModelSerializer):
         model = Transaction
         fields = ['id', 'type', 'wallet', 'category', 'crypto_symbol', 'crypto_amount', 'usd_value_at_entry', 
                   'gas_fee_usd', 'date', 'created_at', 'updated_at']
-        read_only_fields = ['id', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'user', 'created_at', 'updated_at']
     
     def generate_wallet(self):
         return "0x" + secrets.token_hex(20)

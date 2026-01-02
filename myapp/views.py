@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics, status
+from rest_framework import generics, status, permissions
 from .models import Transaction
 from .serializers import TransactionSerializer
 from django.utils.decorators import method_decorator
@@ -21,12 +21,22 @@ from decimal import Decimal
 # Create your views here.
 @method_decorator(csrf_protect, name='dispatch')
 class TransactionListCreate(generics.ListCreateAPIView):
-    queryset = Transaction.objects.all().order_by('created_at')
     serializer_class = TransactionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Transaction.objects.filter(user=self.request.user).order_by('created_at')
+    
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 class TransactionDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Transaction.objects.filter(user=self.request.user)
+        
 
 def index(request):
     return render(request, 'frontend.html')
@@ -41,53 +51,8 @@ SYMBOL_TO_ID = {
     "BNB": "binancecoin",
 }
 
-@csrf_exempt
-def crypto_prices(request):    
-    try:
-        body = json.loads(request.body)
-        symbols = body.get("symbols", [])
-
-        ids = []
-        id_to_symbol = {}
-
-        for sym in symbols:
-            cg_id = SYMBOL_TO_ID.get(sym.upper())
-            
-            if cg_id:
-                ids.append(cg_id)
-                id_to_symbol[cg_id] = sym.upper()
-
-        if not ids:
-            return JsonResponse({})
-
-        cache_key = "prices:" + ",".join(sorted(ids))
-        cached = cache.get(cache_key)
-        if cached:
-            return JsonResponse(cached)
-
-        r = requests.get(
-            "https://api.coingecko.com/api/v3/simple/price",
-            params={
-                "ids": ",".join(ids),
-                "vs_currencies": "usd"
-            },
-            timeout=5
-        )
-        raw = r.json()
-
-        data = {
-            id_to_symbol[cg_id]: raw[cg_id]["usd"]
-            for cg_id in raw
-        }
-
-        cache.set(cache_key, data, 60)
-        return data
-    
-    except Exception as e:
-        return {}
-    
 def all_pnl(request):
-    transactions = Transaction.objects.all().order_by("date", "created_at")
+    transactions = Transaction.objects.filter(user=request.user).order_by("date", "created_at")
 
     realized = Decimal("0")
     unrealized = Decimal("0")

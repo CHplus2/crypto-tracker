@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getCookie } from "./utils";
 import axios from "axios";
 import "./TransactionsAdd.css";
 
-function TransactionsAdd( { setTransactions } ) {
+function TransactionsAdd( { isAuthenticated, setShowLogin, setTransactions } ) {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         type: "",
         crypto_amount: "",
@@ -27,6 +28,11 @@ function TransactionsAdd( { setTransactions } ) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!isAuthenticated) {
+            setShowLogin(true);
+            return
+        }
+
         const dataToSend = {
             ...formData,
             crypto_amount: Number(formData.crypto_amount),
@@ -41,16 +47,7 @@ function TransactionsAdd( { setTransactions } ) {
             });
             
             setTransactions(prev => [...prev, res.data]);
-            setFormData({ 
-                type: "",
-                crypto_amount: "",
-                crypto_symbol: "",
-                usd_value_at_entry: "",
-                gas_fee_usd: "",
-                category: "",
-                wallet: "",
-                date: ""
-            });   
+            navigate("/");   
         } catch (err) {
             console.error(err);
         }
