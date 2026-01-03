@@ -112,20 +112,14 @@ function App() {
     "unrealizedPct": unRealizedPct
   }
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await axios.get("/api/check-auth/", { withCredentials: true })
-        if (res.data.authenticated) {
-          setIsAuthenticated(true);
-        }
-      } catch (err) {
-        setIsAuthenticated(false);
-      }
-    };
-
-    checkAuth();
-  }, []);
+  const checkAuth = async () => {
+    try {
+      const res = await axios.get("/api/check-auth/", { withCredentials: true })
+      setIsAuthenticated(res.data.authenticated);
+    } catch (err) {
+      setIsAuthenticated(false);
+    }
+  };
 
   const loadTransactions = () => {
     axios
@@ -155,7 +149,7 @@ function App() {
         withCredentials: true,
         headers: { "X-CSRFToken": getCookie("csrftoken") },
       });
-      setIsAuthenticated(false);
+      checkAuth(); 
       setTransactions([])
       setRealizedPnL(0.00);
       setUnrealizedPnL(0.00);
@@ -255,7 +249,7 @@ function App() {
                 onClose={() => setShowLogin(false)}
                 onOpen={() => setShowSignup(true)}
                 onSuccess={() => {
-                  setIsAuthenticated(true); 
+                  checkAuth(); 
                   setDropdownOpen(false)
                   loadTransactions();
                   loadPnLs();
@@ -271,7 +265,7 @@ function App() {
               onClose={() => setShowSignup(false)}
               onOpen={() => setShowLogin(true)}
               onSuccess={() => {   
-                setIsAuthenticated(true); 
+                checkAuth(); 
                 setDropdownOpen(false);
                 loadTransactions();
                 loadPnLs();              
