@@ -34,7 +34,7 @@ A full-stack crypto portfolio tracker built with React and Django REST Framework
 * Session-based authentication
 
 
-##Screenshots
+## Screenshots
 ![Login Page](TransactionsLogin.png)
 ![Signup Page](TransactionsSignup.png)
 ![Home Page](TransactionsDashboard.png)
